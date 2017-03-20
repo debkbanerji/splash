@@ -1,0 +1,32 @@
+<nav class="navbar navbar-info">
+    <div class="container-fluid" style="width: inherit">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="width: inherit">
+            <ul class="nav navbar-nav">
+
+                <li data-ng-class="{'active': $ctrl.editProfile, 'current-tab': $ctrl.editProfile, 'nav-bar-fade-on-hover': !$ctrl.editProfile}"><a href="/edit-profile">Edit Profile</a></li>
+                <li data-ng-class="{'active': $ctrl.submitWaterSourceReport, 'current-tab': $ctrl.submitWaterSourceReport, 'nav-bar-fade-on-hover': !$ctrl.submitWaterSourceReport}"><a href="/submit-water-source-report">Submit Water Source Report</a></li>
+                <li data-ng-class="{'active': $ctrl.viewWaterSourceReports, 'current-tab': $ctrl.viewWaterSourceReports, 'nav-bar-fade-on-hover': !$ctrl.viewWaterSourceReports}"><a href="/view-water-source-reports">View Water Source Reports</a></li>
+                <li data-ng-class="{'active': $ctrl.submitWaterQualityReport, 'current-tab': $ctrl.submitWaterQualityReport, 'nav-bar-fade-on-hover': !$ctrl.submitWaterQualityReport}"><a href="/submit-water-quality-report">Submit Water Quality Report</a></li>
+                <li data-ng-class="{'active': $ctrl.viewWaterQualityReports, 'current-tab': $ctrl.viewWaterQualityReports, 'nav-bar-fade-on-hover': !$ctrl.viewWaterQualityReports}"><a href="/view-water-quality-reports">View Water Quality Reports</a></li>
+                <li data-ng-class="{'active': $ctrl.viewMap, 'current-tab': $ctrl.viewMap, 'nav-bar-fade-on-hover': !$ctrl.viewMap}"><a href="/view-map">View Map</a></li>
+                <li data-ng-class="{'active': $ctrl.generateGraph, 'current-tab': $ctrl.generateGraph, 'nav-bar-fade-on-hover': !$ctrl.generateGraph}"><a href="/generate-graph">Generate Graph</a></li>
+                <!--<li data-ng-class="{'active': $ctrl.viewGraph, 'current-tab': $ctrl.viewGraph, 'nav-bar-fade-on-hover': !$ctrl.viewGraph}"><a href="/view-graph">View Graph</a></li>-->
+                <li data-ng-class="{'active': $ctrl.viewLog, 'current-tab': $ctrl.viewLog, 'nav-bar-fade-on-hover': !$ctrl.viewLog}"><a href="/view-log">View Log</a></li>
+                <li data-ng-class="{'active': $ctrl.about, 'current-tab': $ctrl.about, 'nav-bar-fade-on-hover': !$ctrl.about}"><a href="/about">About</a></li>
+
+                <li id="sign_out" class="nav-bar-fade-on-hover" ng-click="$ctrl.signOut()" style="cursor: pointer"><a>Sign Out</a></li>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

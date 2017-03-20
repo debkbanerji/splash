@@ -1,0 +1,1 @@
+angular.module('splashApp', ['ngRoute', 'ngAnimate', 'login', 'firebase', 'navBar', 'editProfile', 'about', 'submitWaterSourceReport', 'viewWaterSourceReports', 'submitWaterQualityReport', 'viewWaterQualityReports', 'viewMap', 'generateGraph', 'viewGraph', 'viewLog']);
