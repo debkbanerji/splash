@@ -2,9 +2,10 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
-            <div ng-repeat="report in $ctrl.qualityReportsArray">
+            <div ng-repeat="report in $ctrl.qualityReportsArray | orderBy:'latitude'">
                 <div class="col-sm-6">
                     <div class="container-fluid panel">
+                        <h2>Test {{report.latitude}}</h2>
                         <h2>Report {{report["report-id"]}}</h2>
                         <h4>Reported By: {{report["reporter-name"]}}</h4>
                         <h4>Water Quality: {{report["water-quality"]}}</h4>
