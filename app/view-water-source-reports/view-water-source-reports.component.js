@@ -4,6 +4,24 @@ angular.module('viewWaterSourceReports').component('viewWaterSourceReports', {
     controller: ['$routeParams', '$route', '$firebaseObject', '$firebaseArray', function viewWaterSourceReportsController($routeParams, $route, $firebaseObject, $firebaseArray) {
         var self = this;
         var user = firebase.auth().currentUser;
-        self.viewWaterSourceReportsRef = firebase.database().ref().child("users").child(user.uid).child("view-water-source-reports");
+        self.viewWaterSourceReportsRef = firebase.database().ref().child("water-source-reports");
+        // self.sourceReports = $firebaseArray(self.viewWaterSourceReportsRef);
+        self.sourceReportsArray = $firebaseArray(self.viewWaterSourceReportsRef);
+
+        self.sourceReports = [];
+        
+        self.sourceReportsArray.$loaded(
+            // function (data) {
+            //     console.log(data)
+            // },
+            // function (error) {
+            //     console.error("Error:", error);
+            // }
+        ).then(function(){
+            angular.forEach(self.sourceReportsArray, function(report) {
+                console.log(report);
+                self.sourceReports.push(report)
+            })
+        });
     }]
 });
