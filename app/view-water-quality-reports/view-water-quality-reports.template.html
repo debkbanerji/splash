@@ -1,9 +1,19 @@
-
 <nav-bar></nav-bar>
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
-            <h2>TODO: Create module 'View Water Quality Reports'</h2>
+            <div ng-repeat="report in $ctrl.qualityReportsArray">
+                <div class="col-sm-6">
+                    <div class="container-fluid panel">
+                        <h2>Report {{report["report-id"]}}</h2>
+                        <h4>Reported By: {{report["reporter-name"]}}</h4>
+                        <h4>Water Quality: {{report["water-quality"]}}</h4>
+                        <h4>Virus PPM: {{report["virus-ppm"]}}</h4>
+                        <h4>Contaminant PPM: {{report["contaminant-ppm"]}}</h4>
+                        <b>{{report["latitude"]}}, {{report["latitude"]}}</b>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
