@@ -11,6 +11,30 @@ a, u {
 
 }
 
+#main-banner-image {
+    background-image: url("../assets/logo.png");
+    background-size: 30%;
+    background-repeat: no-repeat;
+    background-position: 50% 0px;
+    width: 100%;
+    height: 30vw;
+    position: fixed;
+    z-index: -1;
+}
+
+#header-push {
+    height: 30vw;
+}
+
+#content {
+    background-color: #EEEEEE;
+    /*height: 50vh;*/
+    overflow: hidden;
+}
+
+body {
+    background-color: #EEEEEE;
+}
 
 
 .nav-bar-fade-on-hover {

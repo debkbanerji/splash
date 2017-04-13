@@ -1,7 +1,7 @@
 angular.module('submitWaterSourceReport').component('submitWaterSourceReport', {
     templateUrl: 'submit-water-source-report/submit-water-source-report.template.html',
 
-    controller: ['$routeParams', '$route', '$firebaseObject', '$firebaseArray', function submitWaterSourceReportController($routeParams, $route, $firebaseObject, $firebaseArray) {
+    controller: ['$location', '$rootScope', '$routeParams', '$route', '$firebaseObject', '$firebaseArray', function submitWaterSourceReportController($location, $rootScope, $routeParams, $route, $firebaseObject, $firebaseArray) {
         var self = this;
         var user = firebase.auth().currentUser;
         self.waterSourceReportsRef = firebase.database().ref().child("water-source-reports");
@@ -17,10 +17,11 @@ angular.module('submitWaterSourceReport').component('submitWaterSourceReport', {
         self.latitude = 33.7773767;
         self.longitude = -84.3973503;
 
+        self.submitResultText = document.getElementById("submit-result-text");
+
         self.submitReport = function () {
             totalReports = self.totalSourceReportsObject.$value;
             self.totalSourceReportsRef.set(totalReports);
-            console.log(totalReports);
             var report = {
                 "date-time": Date.now(),
                 "latitude": self.latitude,
@@ -32,7 +33,8 @@ angular.module('submitWaterSourceReport').component('submitWaterSourceReport', {
                 "water-type": self.selectedType.toUpperCase().replace("-","_")
             };
             self.waterSourceReportsObject.$add(report);
-            self.totalSourceReportsRef.set(totalReports + 1)
+            self.totalSourceReportsRef.set(totalReports + 1);
+            self.submitResultText.innerHTML = "Successfully Submitted Water Source Report " + (totalReports + 1);
         }
     }]
 });

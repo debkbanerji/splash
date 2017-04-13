@@ -1,9 +1,40 @@
-
 <nav-bar></nav-bar>
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
-            <h2>TODO: Create module 'Submit Water Quality Report'</h2>
+            <div class="panel">
+                <div style="padding: 10px">
+                    <!--<h2>Hello, {{self.user}}</h2>-->
+                    <h1>Submit Water Source Report</h1>
+                    <br>
+                    <form ng-submit="$ctrl.submitReport()" class="form-inline" style="width: 100%">
+                        <h3>Select Water Type</h3>
+                        <select ng-model="$ctrl.selectedQuality" ng-options="x for x in $ctrl.waterQualities">
+                        </select>
+                        <input id="inputContaminantPPM" type="number" step="1" min="0"
+                               placeholder="Enter Contaminant PPM"
+                               ng-model="$ctrl.contaminantPPM" class="form-control">
+                        <br>
+                        <input id="inputVirusPPM" type="number" step="1" min="0"
+                               placeholder="Enter Virus PPM"
+                               ng-model="$ctrl.virusPPM" class="form-control">
+                        <br>
+                        <input id="inputLatitude" type="number" step="0.0000000000000001" min="-90" max="90"
+                               placeholder="Latitude"
+                               ng-model="$ctrl.latitude" class="form-control">
+                        <br>
+                        <input id="inputLongitude" type="number" step="0.0000000000000001" min="-180" max="180"
+                               placeholder="Longitude"
+                               ng-model="$ctrl.longitude" class="form-control">
+                        <br>
+                        <br>
+                        <!--<a class="btn btn-info">Submit Request</a>-->
+                        <input type="submit" class="btn btn-raised btn-info" value="Submit"
+                               style="margin-top: 1px">
+                    </form>
+                    <h2 class="text-error" id="submit-result-text" ng-model="$ctrl.submitResultText"></h2>
+                </div>
+            </div>
         </div>
     </div>
 </div>
