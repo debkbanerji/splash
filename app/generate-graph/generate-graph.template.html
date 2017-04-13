@@ -1,9 +1,48 @@
-
 <nav-bar></nav-bar>
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
-            <h2>TODO: Create module 'Generate Graph'</h2>
+            <div class="panel">
+                <div style="padding: 10px">
+
+                    <form ng-submit="$ctrl.submitRequest()" class="form-inline" style="width: 100%">
+                        <h3>Year:</h3>
+                        <select ng-model="$ctrl.selectedServiceName" ng-options="x for x in $ctrl.yearList">
+                        </select>
+                        <h3>Virus/Contaminant:</h3>
+                        <select ng-model="$ctrl.selectedPriority" ng-options="x for x in $ctrl.virusOrContaminantList">
+                        </select>
+                        <label style="color: #1a1a1a">PPM:
+                            <input id="ppm-input" style="color: #1a1a1a" type="text" name="input" ng-model="messageText">
+                        </label>
+                        <h3>Location:</h3>
+                        <select ng-model="$ctrl.selectedServiceName" ng-options="x for x in $ctrl.locationList">
+                        </select>
+
+
+                        <br>
+                        <br>
+                        <!--<a class="btn btn-info">Submit Request</a>-->
+                        <input type="submit" class="btn btn-raised btn-success" value="View Graph"
+                               style="margin-top: 1px">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="container-fluid">
+            <div class="panel">
+                <div style="padding: 10px">
+                    <label style="color: #1a1a1a">Generated PPM over Time Graph:
+
+                        <div id="chart_div" style="width:400px; height:300px"></div>
+                    </label>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
