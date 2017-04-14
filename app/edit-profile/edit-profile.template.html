@@ -1,9 +1,37 @@
-
 <nav-bar></nav-bar>
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
-            <h2>Page Currently Under Construction</h2>
+            <div class="panel">
+                <div style="padding: 10px">
+                    <!--<h2>Hello, {{self.user}}</h2>-->
+                    <h1>Update Profile</h1>
+                    <br>
+                    <form id="update-form" ng-submit="$ctrl.updateProfile()" class="form-inline" style="width: 100%">
+                        <input id="inputEmail" type="email"
+                               placeholder="Enter Email Address"
+                               ng-model="$ctrl.email" class="form-control">
+                        <br>
+                        <input id="inputDisplayName" type="text"
+                               placeholder="Enter Display Name"
+                               ng-model="$ctrl.displayName" class="form-control">
+                        <br>
+                        <input id="homeAddress" type="text"
+                               placeholder="Enter Home Address"
+                               ng-model="$ctrl.homeAddress" class="form-control">
+                        <br>
+                        <h4 id="select-type-text">Select User Type</h4>
+                        <select id="select-type" ng-model="$ctrl.selectedType" ng-options="x for x in $ctrl.userTypes">
+                        </select>
+                        <br>
+                        <br>
+                        <!--<a class="btn btn-info">Submit Request</a>-->
+                        <input id="updateButton" type="submit" class="btn btn-raised btn-info" value="Update Profile"
+                               style="margin-top: 1px">
+                    </form>
+                    <h2 class="text-error" id="submit-result-text" ng-model="$ctrl.submitResultText"></h2>
+                </div>
+            </div>
         </div>
     </div>
 </div>
