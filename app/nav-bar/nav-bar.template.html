@@ -21,7 +21,7 @@
                 <li data-ng-class="{'active': $ctrl.viewMap, 'current-tab': $ctrl.viewMap, 'nav-bar-fade-on-hover': !$ctrl.viewMap}"><a href="/view-map">View Map</a></li>
                 <li data-ng-class="{'active': $ctrl.generateGraph, 'current-tab': $ctrl.generateGraph, 'nav-bar-fade-on-hover': !$ctrl.generateGraph}"><a href="/generate-graph">Generate Graph</a></li>
                 <!--<li data-ng-class="{'active': $ctrl.viewGraph, 'current-tab': $ctrl.viewGraph, 'nav-bar-fade-on-hover': !$ctrl.viewGraph}"><a href="/view-graph">View Graph</a></li>-->
-                <li data-ng-class="{'active': $ctrl.viewLog, 'current-tab': $ctrl.viewLog, 'nav-bar-fade-on-hover': !$ctrl.viewLog}"><a href="/view-log">View Log</a></li>
+                <li id="viewLogButton" data-ng-class="{'active': $ctrl.viewLog, 'current-tab': $ctrl.viewLog, 'nav-bar-fade-on-hover': !$ctrl.viewLog}"><a href="/view-log">View Log</a></li>
                 <li data-ng-class="{'active': $ctrl.about, 'current-tab': $ctrl.about, 'nav-bar-fade-on-hover': !$ctrl.about}"><a href="/about">About</a></li>
 
                 <li id="sign_out" class="nav-bar-fade-on-hover" ng-click="$ctrl.signOut()" style="cursor: pointer"><a>Sign Out</a></li>
