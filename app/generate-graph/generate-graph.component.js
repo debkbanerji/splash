@@ -5,17 +5,22 @@ angular.module('generateGraph').component('generateGraph', {
         var self = this;
         var user = firebase.auth().currentUser;
         //var plotly = require('plotly')("AliceCZheng", "J9RukuNPkTxVefx0poBs");
-        self.generateGraphRef = firebase.database().ref().child("users").child(user.uid).child("generate-graph");
+        self.reportsRef = firebase.database().ref().child("water-quality-reports");
+        self.reports = $firebaseArray(self.reportsRef);
 
         google.charts.load('current', {packages: ['corechart', 'line']});
-        google.charts.setOnLoadCallback(drawBasic);
+        // google.charts.setOnLoadCallback(drawBasic);
 
-        self.yearList = ["2015", "2016", "2017"];
+        // self.yearList = ["2015", "2016", "2017"];
         self.virusOrContaminantList = ["Virus", "Contaminant"];
-        self.locationList = ["Atlanta", "Decatur"];
+
+        self.selectedParameter = "Virus";
+        self.startDate = (new Date);
+        self.endDate = (new Date);
+        // self.locationList = ["Atlanta", "Decatur"];
 
 
-        function drawBasic() {
+        function drawVirus(startDate, endDate) {
 
             var data = new google.visualization.DataTable();
             data.addColumn('number', 'X');
@@ -48,6 +53,13 @@ angular.module('generateGraph').component('generateGraph', {
             var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
 
             chart.draw(data, options);
+            chart.draw(data, options);
+        }
+        // google.charts.setOnLoadCallback(drawVirus());
+
+        self.generate = function () {
+            console.log("SUBMIIIT");
+            google.charts.setOnLoadCallback(drawVirus());
         }
     }]
 

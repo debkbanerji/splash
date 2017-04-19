@@ -5,18 +5,25 @@
             <div class="panel">
                 <div style="padding: 10px">
 
-                    <form ng-submit="$ctrl.submitRequest()" class="form-inline" style="width: 100%">
-                        <h3>Year:</h3>
-                        <select ng-model="$ctrl.selectedServiceName" ng-options="x for x in $ctrl.yearList">
-                        </select>
+                    <form ng-submit="$ctrl.generate()" class="form-inline" style="width: 100%">
+                        <!--<h3>Year:</h3>-->
+                        <!--<select ng-model="$ctrl.selectedServiceName" ng-options="x for x in $ctrl.yearList">-->
+                        <!--</select>-->
                         <h3>Virus/Contaminant:</h3>
-                        <select ng-model="$ctrl.selectedPriority" ng-options="x for x in $ctrl.virusOrContaminantList">
+                        <select ng-model="$ctrl.selectedParameter" ng-options="x for x in $ctrl.virusOrContaminantList">
                         </select>
-                        <label style="color: #1a1a1a">PPM:
-                            <input id="ppm-input" style="color: #1a1a1a" type="text" name="input" ng-model="messageText">
+                        <br><br>
+                        <label style="color: #1a1a1a">
+                            Start Date:
+                            <input id="start-date" style="color: #1a1a1a" type="date" name="input" ng-model="$ctrl.startDate">
                         </label>
-                        <h3>Location:</h3>
-                        <select ng-model="$ctrl.selectedServiceName" ng-options="x for x in $ctrl.locationList">
+                        <br><br>
+                        <label style="color: #1a1a1a">
+                            End Date:
+                            <input id="end-date" style="color: #1a1a1a" type="date" name="input" ng-model="$ctrl.endDate">
+                        </label>
+                        <!--<h3>Location:</h3>-->
+                        <!--<select ng-model="$ctrl.selectedLocation" ng-options="x for x in $ctrl.locationList">-->
                         </select>
 
 
@@ -37,10 +44,8 @@
             <div class="panel">
                 <div style="padding: 10px">
                     <label style="color: #1a1a1a">Generated PPM over Time Graph:
-
                         <div id="chart_div" style="width:400px; height:300px"></div>
                     </label>
-
                 </div>
             </div>
         </div>
