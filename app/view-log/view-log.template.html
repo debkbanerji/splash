@@ -1,9 +1,17 @@
-
 <nav-bar></nav-bar>
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
-            <h2>Page Currently Under Construction</h2>
+            <div ng-repeat="log in $ctrl.logs">
+                <div class="col-sm-6">
+                    <div class="container-fluid panel">
+                        <h2>{{log["time"]}}</h2>
+                        <h4>Type of Activity: {{log["type"]}}</h4>
+                        <h4>Details: {{log["details"]}}</h4>
+                        <h4>Associated User's Id: {{log["uid"]}}</h4>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
