@@ -5,5 +5,9 @@ angular.module('viewMap').component('viewMap', {
         var self = this;
         var user = firebase.auth().currentUser;
         self.viewMapRef = firebase.database().ref().child("users").child(user.uid).child("view-map");
+
+
+        
+
     }]
 });
