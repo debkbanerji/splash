@@ -1,5 +1,8 @@
 
 <nav-bar></nav-bar>
+<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOQQtlEZGiDx8T_3aI8vJt8IZAqcgLYoA&callback=initMap">
+</script>
 <div class="row">
     <div class="col-xs-12">
         <div class="container-fluid">
@@ -25,11 +28,31 @@
                         position: uluru,
                         map: map
                     });
+
+                    function placeMarkerAndPanTo(latLng, map) {
+                        console.log(latLng);
+                        var marker = new google.maps.Marker({
+                            position: latLng,
+                            map: map
+                        });
+                        // map.panTo(latLng);
+                    }
+
+                    var database = firebase.database();
+                    var reportsRef = firebase.database().ref('water-source-reports');
+                    reportsRef.on('value', function(snapshot) {
+                        var snapshotVal = snapshot.val();
+                        var keys = Object.keys(snapshotVal);
+                        console.log(keys.length);
+                        for (i = 0; i < keys.length; i++) {
+                            console.log(snapshotVal[keys[i]]);
+                            placeMarkerAndPanTo({lat: snapshotVal[keys[i]].latitude, lng: snapshotVal[keys[i]].longitude}, map)
+                        }
+                    });
                 }
+
             </script>
-            <script async defer
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOQQtlEZGiDx8T_3aI8vJt8IZAqcgLYoA&callback=initMap">
-            </script>
+
             </body>
         </div>
     </div>
