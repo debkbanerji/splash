@@ -19,36 +19,119 @@
             <div id="map"></div>
             <script>
                 function initMap() {
-                    var uluru = {lat: -25.363, lng: 131.044};
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 4,
-                        center: uluru
+                    var header = '<div id="content">'+
+                        '<h1 id="firstHeading" class="firstHeading">Water Report</h1>'
+                        '</div>';
+
+                    var conditionString;
+                    var typeString;
+
+                    var database = firebase.database();
+                    var reportsRef = firebase.database().ref('water-source-reports');
+
+                    reportsRef.on('value', function(snapshot) {
+                        var snapshotVal = snapshot.val();
+                        var keys = Object.keys(snapshotVal);
+                        console.log(keys.length);
+                        var centerMarker = {lat: snapshotVal[keys[0]].latitude, lng: snapshotVal[keys[0]].longitude};
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 4,
+                            center: centerMarker
+                        });
+                        var marker = new google.maps.Marker({
+                            position: centerMarker,
+                            map: map
+                        });
+                        for (i = 0; i < keys.length; i++) {
+                            console.log(snapshotVal[keys[i]]);
+                            placeMarkerAndPanTo({lat: snapshotVal[keys[i]].latitude, lng: snapshotVal[keys[i]].longitude}, map)
+
+
+                            if (snapshotVal[keys[i]]["water-condition"] == ("WASTE")) {
+                                conditionString =
+                                    '<div id="bodyContent">'+
+                                    '<p><b>Water Condition: </b>Waste</p>'+
+                                    '</div>'
+                            } else if (snapshotVal[keys[i]]["water-condition"] == ("Treatable-Clear")) {
+                                conditionString = '<div id="bodyContent">'+
+                                    '<p><b>Water Condition: </b>Treatable Clear</p>'+
+                                    '</div>'
+                            } else if (snapshotVal[keys[i]]["water-condition"]==("Treatable-Muddy")) {
+                                conditionString = '<div id="bodyContent">'+
+                                    '<p><b>Water Condition: </b>Treatable Muddy</p>'+
+                                    '</div>'
+                            } else if (snapshotVal[keys[i]]["water-condition"]==("Potable")) {
+                                conditionString = '<div id="bodyContent">'+
+                                    '<p><b>Water Condition: </b>Potable</p>'+
+                                    '</div>'
+                            } else {
+                                conditionString = '<div id="bodyContent">'+
+                                '<p><b>Water Condition: </b>N/A</p>'+
+                                '</div>'
+                            }
+                            if (snapshotVal[keys[i]]["water-type"] == ("BOTTLED")) {
+                                typeString =
+                                    '<div id="bodyContent">'+
+                                    '<p><b>Water Type: </b>Bottled</p>'+
+                                    '</div>'
+                            } else if (snapshotVal[keys[i]]["water-type"] == ("WELL")) {
+                                typeString =
+                                    '<div id="bodyContent">'+
+                                    '<p><b>Water Type: </b>Well</p>'+
+                                    '</div>'
+                            } else if (snapshotVal[keys[i]]["water-type"] == ("STREAM")) {
+                                typeString =
+                                    '<div id="bodyContent">'+
+                                    '<p><b>Water Type: </b>Stream</p>'+
+                                    '</div>'
+                            } else if (snapshotVal[keys[i]]["water-type"] == ("LAKE")) {
+                                typeString =
+                                    '<div id="bodyContent">'+
+                                    '<p><b>Water Type: </b>Lake</p>'+
+                                    '</div>'
+                            } else if (snapshotVal[keys[i]]["water-type"] == ("SPRING")) {
+                                typeString =
+                                    '<div id="bodyContent">'+
+                                    '<p><b>Water Type: </b>Spring</p>'+
+                                    '</div>'
+                            } else if (snapshotVal[keys[i]]["water-type"] == ("OTHER")) {
+                                typeString =
+                                    '<div id="bodyContent">'+
+                                    '<p><b>Water Type: </b>Other</p>'+
+                                    '</div>'
+                            } else {
+                                typeString =
+                                    '<div id="bodyContent">'+
+                                    '<p><b>Water Type: </b>Bottled</p>'+
+                                    '</div>'
+                            }
+
+                        }
                     });
-                    var marker = new google.maps.Marker({
-                        position: uluru,
-                        map: map
-                    });
+
+
+
+
 
                     function placeMarkerAndPanTo(latLng, map) {
                         console.log(latLng);
                         var marker = new google.maps.Marker({
                             position: latLng,
-                            map: map
+                            map: map,
+                            //title: title
+                        });
+                        marker.addListener('click', function() {
+                            infowindow.open(map, marker);
+                        });
+                        var infowindow = new google.maps.InfoWindow({
+                            content: header + conditionString + typeString
                         });
                         // map.panTo(latLng);
                     }
 
-                    var database = firebase.database();
-                    var reportsRef = firebase.database().ref('water-source-reports');
-                    reportsRef.on('value', function(snapshot) {
-                        var snapshotVal = snapshot.val();
-                        var keys = Object.keys(snapshotVal);
-                        console.log(keys.length);
-                        for (i = 0; i < keys.length; i++) {
-                            console.log(snapshotVal[keys[i]]);
-                            placeMarkerAndPanTo({lat: snapshotVal[keys[i]].latitude, lng: snapshotVal[keys[i]].longitude}, map)
-                        }
-                    });
+
+
+
                 }
 
             </script>
