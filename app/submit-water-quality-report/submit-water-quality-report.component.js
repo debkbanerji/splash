@@ -14,28 +14,34 @@ angular.module('submitWaterQualityReport').component('submitWaterQualityReport',
         self.totalQualityReportsObject = $firebaseObject(self.totalQualityReportsRef);
         self.latitude = 33.7773767;
         self.longitude = -84.3973503;
-        self.virusPPM = 0;
-        self.contaminantPPM = 0;
+        self.virusPPM = null;
+        self.contaminantPPM = null;
 
         self.submitResultText = document.getElementById("submit-result-text");
 
         self.submitReport = function () {
-            totalReports = self.totalQualityReportsObject.$value;
-            self.totalQualityReportsRef.set(totalReports);
-            var report = {
-                "contaminant-ppm": self.contaminantPPM,
-                "date-time": Date.now(),
-                "latitude": self.latitude,
-                "longitude": self.longitude,
-                "report-id": totalReports + 1,
-                "reporter-name": user.displayName,
-                "reporter-uid": user.uid,
-                "virus-ppm": self.virusPPM,
-                "water-quality": self.selectedQuality.toUpperCase().replace("-", "_")
-            };
-            self.waterQualityReportsObject.$add(report);
-            self.totalQualityReportsRef.set(totalReports + 1);
-            self.submitResultText.innerHTML = "Successfully Submitted Water Quality Report " + (totalReports + 1);
+            // console.log(self.virusPPM);
+            // console.log(self.contaminantPPM);
+            if (self.virusPPM !== null && self.contaminantPPM !== null) {
+                // console.log("SUBMITT");
+                totalReports = self.totalQualityReportsObject.$value;
+                self.totalQualityReportsRef.set(totalReports);
+                var report = {
+                    "contaminant-ppm": self.contaminantPPM,
+                    "date-time": Date.now(),
+                    "latitude": self.latitude,
+                    "longitude": self.longitude,
+                    "report-id": totalReports + 1,
+                    "reporter-name": user.displayName,
+                    "reporter-uid": user.uid,
+                    "virus-ppm": self.virusPPM,
+                    "water-quality": self.selectedQuality.toUpperCase().replace("-", "_")
+                };
+                self.waterQualityReportsObject.$add(report);
+                self.totalQualityReportsRef.set(totalReports + 1);
+                self.submitResultText.innerHTML = "Successfully Submitted Water Quality Report " + (totalReports + 1);
+                // console.log(self.submitResultText);
+            }
         }
     }]
 });
