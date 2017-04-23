@@ -51,12 +51,15 @@ function updateNavBar(location, self) {
     self.viewGraph = /view-graph$/.test(self.path);
     self.viewLog = /view-log$/.test(self.path);
     self.about = /about$/.test(self.path);
+    if (self.userObject) {
+        hideElements(self.userObject["user-type"]);
+    }
 }
 
 function hideElements(type) {
-    console.log(type);
-    if (type !== "ADMINISTRATOR") {
-        var viewLogButton = document.getElementById("viewLogButton");
-        viewLogButton.style.display = 'none';
-    }
+    // console.log(type);
+    // if (type !== "ADMINISTRATOR") {
+    //     var viewLogButton = document.getElementById("viewLogButton");
+    //     viewLogButton.style.display = 'none';
+    // }
 }

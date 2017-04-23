@@ -11,12 +11,12 @@ angular.module('viewLog').component('viewLog', {
 
         self.databaseLogs.$loaded(
             function(x) {
-                console.log(self.databaseLogs);
+                // console.log(self.databaseLogs);
                 for (var i = 0; i < self.databaseLogs.length; i++) {
                     item = self.databaseLogs[i];
-                    console.log(item);
+                    // console.log(item);
                     date = new Date(item["time"]);
-                    console.log(date.toUTCString());
+                    // console.log(date.toUTCString());
                     self.logs.push({
                         "time" : date.toUTCString(),
                         "type" : item["type"],
@@ -25,7 +25,7 @@ angular.module('viewLog').component('viewLog', {
                         }
                     )
                 }
-                console.log(self.logs);
+                // console.log(self.logs);
             }, function(error) {
                 console.error("Error:", error);
             });
